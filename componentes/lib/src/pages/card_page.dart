@@ -42,11 +42,13 @@ class CardPage extends StatelessWidget {
           )
         ]
       ),
+      elevation: 10.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     );
   }
 
   Widget _cardTipo2() {
-    return Card(
+    final card = Container(
       child: Column(
         children: [
           FadeInImage(
@@ -65,6 +67,25 @@ class CardPage extends StatelessWidget {
           )
         ]
       )
+    );
+
+    return Container(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: card
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            blurRadius: 10.0,
+            color: Colors.black26,
+            offset: Offset(2.0, 10.0),
+            spreadRadius: 2.0
+          )
+        ],
+        color: Colors.white
+      ),
     );
   }
 }
