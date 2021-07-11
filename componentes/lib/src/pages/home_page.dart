@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Pages
-import 'package:componentes/src/pages/alert_page.dart';
-
 // Providers
 import 'package:componentes/src/providers/menu_provider.dart';
 
@@ -39,11 +36,7 @@ class HomePage extends StatelessWidget {
       final widgetTemp = ListTile(
         leading: getIcon( opt['icon'] ),
         onTap: () {
-          final route = MaterialPageRoute(
-            builder: ( context ) => AlertPage()
-          );
-
-          Navigator.push(context, route);
+          Navigator.pushNamed(context, opt['ruta']);
         },
         title: Text( opt['texto'] ),
         trailing: Icon( Icons.keyboard_arrow_right, color: Colors.blue ),
