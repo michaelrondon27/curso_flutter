@@ -9,7 +9,9 @@ class CardPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          _cardTipo1()
+          _cardTipo1(),
+          SizedBox(height: 30.0),
+          _cardTipo2()
         ],
         padding: EdgeInsets.all(10),
       ),
@@ -40,6 +42,29 @@ class CardPage extends StatelessWidget {
           )
         ]
       ),
+    );
+  }
+
+  Widget _cardTipo2() {
+    return Card(
+      child: Column(
+        children: [
+          FadeInImage(
+            fadeInDuration: Duration(milliseconds: 200),
+            fit: BoxFit.cover,
+            height: 300.0,
+            image: NetworkImage('https://grupoacerta.com/wp-content/uploads/2019/07/madrid-landscape.jpg'),
+            placeholder: AssetImage('assets/jar-loading.gif')
+          ),
+          // Image(
+          //   image: NetworkImage('https://grupoacerta.com/wp-content/uploads/2019/07/madrid-landscape.jpg'),
+          // ),
+          Container(
+            child: Text('No tengo idea de que poner'),
+            padding: EdgeInsets.all(10.0),
+          )
+        ]
+      )
     );
   }
 }
