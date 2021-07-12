@@ -16,10 +16,11 @@ class HomeScreen extends StatelessWidget {
         elevation: 0,
         title: Text('Películas en cines'),
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            CardSwiper()
+            CardSwiper(),
+            MovieSlider()
           ],
         )
       )
