@@ -125,12 +125,15 @@ class _InputPageState extends State<InputPage> {
       context: context,
       firstDate: new DateTime(2018),
       initialDate: new DateTime.now(),
-      lastDate: new DateTime(2025)
+      lastDate: new DateTime(2025),
+      locale: Locale('es', 'ES')
     );
 
-    setState(() {
-      _fecha = picked.toString();
-      _inputFieldDateController.text = _fecha;
-    });
+    if ( picked != null ) {
+      setState(() {
+        _fecha = picked.toString();
+        _inputFieldDateController.text = _fecha;
+      });
+    }
   }
 }
