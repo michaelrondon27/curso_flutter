@@ -7,6 +7,7 @@ class SliderPage extends StatefulWidget {
 }
 
 class _SliderPageState extends State<SliderPage> {
+  bool _bloquearCheck = false;
   double _valorSlider = 100.0;
 
   @override
@@ -19,6 +20,8 @@ class _SliderPageState extends State<SliderPage> {
         child: Column(
           children: <Widget>[
             _crearSlider(),
+            _crearCheckbox(),
+            _crearSwitch(),
             Expanded(
               child: _crearImagen()
             )
@@ -26,6 +29,27 @@ class _SliderPageState extends State<SliderPage> {
         ),
         padding: EdgeInsets.only(top: 50.0),
       ),
+    );
+  }
+
+  Widget _crearCheckbox() {
+    // return Checkbox(
+    //   onChanged: ( value ) {
+    //     setState(() {
+    //       _bloquearCheck = value!;
+    //     });
+    //   },
+    //   value: _bloquearCheck
+    // );
+
+    return CheckboxListTile(
+      onChanged: ( value ) {
+        setState(() {
+          _bloquearCheck = value!;
+        });
+      },
+      title: Text('Bloquear slider'),
+      value: _bloquearCheck
     );
   }
 
@@ -43,12 +67,24 @@ class _SliderPageState extends State<SliderPage> {
       label: 'Tamaño de la imagen',
       max: 400.0,
       min: 10.0,
-      onChanged: ( value ) {
+      onChanged: ( _bloquearCheck ) ? null : ( value ) {
         setState(() {
           _valorSlider = value;
         });
       },
       value: _valorSlider
+    );
+  }
+
+  Widget _crearSwitch() {
+    return SwitchListTile(
+      onChanged: ( value ) {
+        setState(() {
+          _bloquearCheck = value;
+        });
+      },
+      title: Text('Bloquear slider'),
+      value: _bloquearCheck
     );
   }
 }
