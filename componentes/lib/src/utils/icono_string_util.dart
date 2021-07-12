@@ -6,6 +6,7 @@ final _icons = <String, IconData> {
   'donut_large'  : Icons.donut_large,
   'folder_open'  : Icons.folder_open,
   'input'        : Icons.input,
+  'list'         : Icons.list,
   'tune'         : Icons.tune
 };
 
