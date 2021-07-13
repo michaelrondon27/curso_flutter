@@ -40,7 +40,7 @@ class CardSwiper extends StatelessWidget {
                 placeholder: AssetImage('assets/no-image.jpg')
               ),
             ),
-            onTap: () => Navigator.pushNamed(context, 'details', arguments: 'movie-instace'),
+            onTap: () => Navigator.pushNamed( context, 'details', arguments: movie ),
           );
         
         },

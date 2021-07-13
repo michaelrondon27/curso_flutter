@@ -90,7 +90,7 @@ class _MoviePoster extends StatelessWidget {
                 width: 130,
               ),
             ),
-            onTap: () => Navigator.pushNamed(context, 'details', arguments: 'movie-intance'),
+            onTap: () => Navigator.pushNamed( context, 'details', arguments: movie ),
           ),
 
           SizedBox( height: 5 ),
