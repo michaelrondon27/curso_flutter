@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:peliculas/models/models.dart';
+
 class MoviesProvider extends ChangeNotifier {
   String _apiUrl = '7a3f4cbe05801e3adbec1ac98275422d';
   String _baseUrl = 'api.themoviedb.org';
@@ -19,9 +21,9 @@ class MoviesProvider extends ChangeNotifier {
     });
 
     final response = await http.get(url);
-    
-    final Map<String, dynamic>decodedData = json.decode( response.body );
 
+    final nowPlayingResponse = NowPlayingRresponse.fromJson( response.body );
+    
     
   }
 }
