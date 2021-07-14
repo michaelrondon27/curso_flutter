@@ -53,7 +53,7 @@ class _MovieSliderState extends State<MovieSlider> {
           Expanded(
             child: ListView.builder(
               controller: scrollController,
-              itemBuilder: ( _, int index ) => _MoviePoster( widget.movies[index] ),
+              itemBuilder: ( _, int index ) => _MoviePoster( widget.movies[index], '${ widget.title }-$index-${ widget.movies[index].id }' ),
               itemCount: widget.movies.length,
               scrollDirection: Axis.horizontal,
             ),
@@ -68,27 +68,34 @@ class _MovieSliderState extends State<MovieSlider> {
 }
 
 class _MoviePoster extends StatelessWidget {
+  final String heroId;
   final Movie movie;
 
   const _MoviePoster(
-    this.movie
+    this.movie,
+    this.heroId
   );
 
   @override
   Widget build(BuildContext context) {
+    movie.heroId = heroId;
+
     return Container(
       child: Column(
         children: [
           GestureDetector(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: FadeInImage(
-                fit: BoxFit.cover,
-                height: 190,
-                image: NetworkImage( movie.fullPosterImg ),
-                placeholder: AssetImage('assets/no-image.jpg'),
-                width: 130,
+            child: Hero(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: FadeInImage(
+                  fit: BoxFit.cover,
+                  height: 190,
+                  image: NetworkImage( movie.fullPosterImg ),
+                  placeholder: AssetImage('assets/no-image.jpg'),
+                  width: 130,
+                ),
               ),
+              tag: movie.heroId!,
             ),
             onTap: () => Navigator.pushNamed( context, 'details', arguments: movie ),
           ),

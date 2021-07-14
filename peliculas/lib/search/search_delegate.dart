@@ -74,12 +74,17 @@ class _MovieItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    movie.heroId = 'search-${ movie.id }';
+
     return ListTile(
-      leading: FadeInImage(
-        fit: BoxFit.contain,
-        image: NetworkImage( movie.fullPosterImg ),
-        placeholder: AssetImage('assets/no-image.jpg'),
-        width: 50
+      leading: Hero(
+        child: FadeInImage(
+          fit: BoxFit.contain,
+          image: NetworkImage( movie.fullPosterImg ),
+          placeholder: AssetImage('assets/no-image.jpg'),
+          width: 50
+        ),
+        tag: movie.heroId!,
       ),
       onTap: () => Navigator.pushNamed( context, 'details', arguments: movie ),
       subtitle: Text( movie.originalTitle ),
