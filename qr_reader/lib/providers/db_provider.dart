@@ -4,6 +4,9 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'package:qr_reader/models/scan_model.dart';
+export 'package:qr_reader/models/scan_model.dart';
+
 class DBProvider {
   static Database? _database;
 
@@ -38,5 +41,13 @@ class DBProvider {
       onOpen: ( db ) {},
       version: 1,
     );
+  }
+
+  Future<int> nuevoScan( ScanModel nuevoScan ) async {
+    final db = await database;
+
+    final res = await db?.insert('scans', nuevoScan.toJson());
+
+    return res!;
   }
 }

@@ -40,8 +40,6 @@ class _HomePageBody extends StatelessWidget {
 
     final currentIndex = uiProvider.selectedMenuOpt;
 
-    DBProvider.db.database;
-
     switch( currentIndex ) {
       case 0:
         return MapasPage();
