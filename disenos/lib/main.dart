@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         'scroll_screen': ( _ ) => ScrollScreen(),
         'home_screen': ( _ ) => HomeScreen()
       },
+      theme: ThemeData.dark(),
       title: 'Material App',
     );
   }
