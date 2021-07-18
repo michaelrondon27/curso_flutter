@@ -1,33 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import 'package:qr_reader/providers/scan_list_provider.dart';
+import 'package:qr_reader/widgets/scan_tiles.dart';
 
 class MapasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final scanListProvider = Provider.of<ScanListProvider>(context);
-
-    final scans = scanListProvider.scans;
-    
-    return ListView.builder(
-      itemBuilder: ( _, i ) => Dismissible(
-        background: Container(
-          color: Colors.red,
-        ),
-        child: ListTile(
-          leading: Icon( Icons.map, color: Theme.of(context).primaryColor ),
-          onTap: () => print('abrir algo'),
-          subtitle: Text( scans[i].id.toString() ),
-          title: Text( scans[i].valor ),
-          trailing: Icon( Icons.keyboard_arrow_right, color: Colors.grey )
-        ),
-        key: UniqueKey(),
-        onDismissed: ( DismissDirection direction ) {
-          Provider.of<ScanListProvider>(context, listen: false).borrarScanPorId(scans[i].id!);
-        },
-      ),
-      itemCount: scans.length,
-    );
+    return ScanTiles( tipo: 'geo' );
   }
 }
