@@ -32,12 +32,25 @@ class Background extends StatelessWidget {
 class MainContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        
-      ],
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
+    final textStyle = TextStyle( color: Colors.white, fontSize: 50, fontWeight: FontWeight.bold );
+
+    return SafeArea(
+      bottom: false,
+      child: Column(
+        children: [
+          SizedBox( height: 30 ),
+
+          Text('11°', style: textStyle),
+
+          Text('Miércoles', style: textStyle),
+
+          Expanded(child: Container()),
+
+          Icon( Icons.keyboard_arrow_down, size: 100, color: Colors.white )
+        ],
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+      ),
     );
   }
 }
