@@ -1,15 +1,32 @@
 import 'package:flutter/material.dart';
 
 class ScrollScreen extends StatelessWidget {
+  final boxDecoration = BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topCenter,
+      colors: [
+        Color(0xff5EE8C5),
+        Color(0xff30BAD6)
+      ],
+      end: Alignment.bottomCenter,
+      stops: [0.5, 0.5]
+    )
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Background(),
+      body: Container(
+        child: PageView(
+          children: [
+            Page1(),
 
-          MainContent()
-        ],
+            Page2()
+          ],
+          physics: BouncingScrollPhysics(),
+          scrollDirection: Axis.vertical,
+        ),
+        decoration: boxDecoration,
       ),
     );
   }
@@ -51,6 +68,47 @@ class MainContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
       ),
+    );
+  }
+}
+
+class Page1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Background(),
+
+        MainContent()
+      ],
+    );
+  }
+}
+
+class Page2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: TextButton(
+          child: Padding(
+            child: Text(
+              'Bienvenido',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 30
+              ),
+            ),
+            padding: EdgeInsets.symmetric( horizontal: 40 ),
+          ),
+          onPressed: () {},
+          style: TextButton.styleFrom(
+            backgroundColor: Color(0xff0098FA),
+            shape: StadiumBorder()
+          ),
+        ),
+      ),
+      color: Color(0xff30BAD6),
     );
   }
 }
