@@ -50,4 +50,28 @@ class DBProvider {
 
     return res!;
   }
+
+  Future<ScanModel?> getScanById( int id ) async {
+    final db = await database;
+
+    final res = await db?.query('scans', where: 'id = ?', whereArgs: [id]);
+
+    return res!.isNotEmpty ? ScanModel.fromJson(res.first) : null;
+  }
+
+  Future<List<ScanModel>> getTodosLosScans() async {
+    final db = await database;
+
+    final res = await db?.query('scans');
+
+    return res!.isNotEmpty ? res.map( (s) => ScanModel.fromJson(s)).toList() : [];
+  }
+
+  Future<List<ScanModel>> getScansPorTipo( String tipo ) async {
+    final db = await database;
+
+    final res = await db?.query('scans', where: 'tipo = ?', whereArgs: [tipo]);
+
+    return res!.isNotEmpty ? res.map( (s) => ScanModel.fromJson(s)).toList() : [];
+  }
 }
