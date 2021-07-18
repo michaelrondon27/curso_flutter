@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:provider/provider.dart';
+
+import 'package:qr_reader/providers/scan_list_provider.dart';
 
 class ScanButton extends StatelessWidget {
   @override
@@ -17,7 +20,9 @@ class ScanButton extends StatelessWidget {
 
         final barcodeScanRes = 'https://www.instagram.com/mikerondon27/';
 
-        print(barcodeScanRes);
+        final scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
+
+        scanListProvider.nuevoScan( barcodeScanRes );
       },
     );
   }
