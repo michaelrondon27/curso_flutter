@@ -15,6 +15,15 @@ class MyApp extends StatelessWidget {
         'home': ( _ ) => HomePage(),
         'mapa': ( _ ) => MapaPage()
       },
+      theme: ThemeData(
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          selectedItemColor: Colors.deepPurple
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.deepPurple
+        ),
+        primaryColor: Colors.deepPurple,
+      ),
       title: 'QR Reader',
     );
   }
