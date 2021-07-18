@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:qr_reader/providers/scan_list_provider.dart';
+import 'package:qr_reader/utils/utils.dart';
 
 class ScanTiles extends StatelessWidget {
   final String tipo;
@@ -24,7 +25,7 @@ class ScanTiles extends StatelessWidget {
             this.tipo == 'http' ? Icons.home_outlined : Icons.map_outlined,
             color: Theme.of(context).primaryColor
           ),
-          onTap: () => print('abrir algo'),
+          onTap: () => launchURL( context, scans[i] ),
           subtitle: Text( scans[i].id.toString() ),
           title: Text( scans[i].valor ),
           trailing: Icon( Icons.keyboard_arrow_right, color: Colors.grey )
