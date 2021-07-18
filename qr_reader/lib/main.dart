@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'package:qr_reader/pages/home_page.dart';
 import 'package:qr_reader/pages/mapa_page.dart';
+
+import 'package:qr_reader/providers/scan_list_provider.dart';
 import 'package:qr_reader/providers/ui_provider.dart';
  
 void main() => runApp(MyApp());
@@ -30,7 +32,8 @@ class MyApp extends StatelessWidget {
         title: 'QR Reader',
       ),
       providers: [
-        ChangeNotifierProvider(create: (_) => UiProvider())
+        ChangeNotifierProvider(create: (_) => UiProvider()),
+        ChangeNotifierProvider(create: (_) => ScanListProvider()),
       ],
     );
   }
