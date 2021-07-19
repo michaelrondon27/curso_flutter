@@ -30,6 +30,23 @@ class _MapaPageState extends State<MapaPage> {
 
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon( Icons.location_disabled ),
+            onPressed: () async {
+              final GoogleMapController controller = await _controller.future;
+
+              controller.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: scan.getLatLng(),
+                    zoom: 17.5
+                  )
+                )
+              );
+            },
+          )
+        ],
         centerTitle: true,
         title: Text('Mapa')
       ),
@@ -42,6 +59,10 @@ class _MapaPageState extends State<MapaPage> {
           _controller.complete(controller);
         },
         zoomControlsEnabled: false,
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon( Icons.layers ),
+        onPressed: () {},
       ),
     );
   }
