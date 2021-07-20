@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:preferenciasusuarioapp/src/widgets/menu_widget.dart';
+
 class SettingsPage extends StatelessWidget {
   static final String routeName = 'settings';
   
@@ -12,7 +14,8 @@ class SettingsPage extends StatelessWidget {
       ),
       body: Center(
         child: Text('Ajustes Page'),
-      )
+      ),
+      drawer: MenuWidget(),
     );
   }
 }
