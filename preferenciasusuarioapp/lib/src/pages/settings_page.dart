@@ -25,6 +25,8 @@ class _SettingsPageState extends State<SettingsPage> {
     _colorSecundario = prefs.colorSecundario;
     _genero = prefs.genero;
 
+    prefs.ultimaPagina = SettingsPage.routeName;
+
     _textController = new TextEditingController( text: prefs.nombreUsuario );
   }
 
