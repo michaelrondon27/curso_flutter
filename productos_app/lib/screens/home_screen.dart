@@ -22,7 +22,11 @@ class HomeScreen extends StatelessWidget {
           child: ProductCard(
             product: productsService.products[index],
           ),
-          onTap: () => Navigator.pushNamed(context, 'product'),
+          onTap: () {
+            productsService.selectedProduct = productsService.products[index].copy();
+
+            Navigator.pushNamed(context, 'product');
+          },
         ),
         itemCount: productsService.products.length,
       ),
