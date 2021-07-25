@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:productos_app/providers/product_form_provider.dart';
 import 'package:productos_app/services/services.dart';
 import 'package:productos_app/ui/input_decorations.dart';
 import 'package:productos_app/widgets/widgets.dart';
@@ -10,6 +11,25 @@ class ProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final productsService = Provider.of<ProductsService>(context);
 
+    return ChangeNotifierProvider(
+      child: _ProductScreenBody(
+        productsService: productsService
+      ),
+      create: ( _ ) => ProductFormProvider( productsService.selectedProduct ),
+    );
+  }
+}
+
+class _ProductScreenBody extends StatelessWidget {
+  const _ProductScreenBody({
+    Key? key,
+    required this.productsService,
+  }) : super(key: key);
+
+  final ProductsService productsService;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -57,6 +77,10 @@ class ProductScreen extends StatelessWidget {
 class _ProductForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final productForm = Provider.of<ProductFormProvider>(context);
+
+    final product = productForm.product;
+
     return Padding(
       child: Container(
         child: Form(
@@ -69,6 +93,13 @@ class _ProductForm extends StatelessWidget {
                   hintText: 'Nombre del producto', 
                   labelText: 'Nombre:'
                 ),
+                initialValue: product.name,
+                onChanged: ( value ) => product.name = value,
+                validator: ( value ) {
+                  if ( value == null || value.length < 1 ) {
+                    return "El nombre es obligatorio";
+                  }
+                },
               ),
 
               SizedBox( height: 15 ),
@@ -78,7 +109,15 @@ class _ProductForm extends StatelessWidget {
                   hintText: '\$150', 
                   labelText: 'Precio:'
                 ),
+                initialValue: "${ product.price }",
                 keyboardType: TextInputType.number,
+                onChanged: ( value ) {
+                  if ( double.tryParse( value ) == null ) {
+                    product.price = 0;
+                  } else {
+                    product.price = double.parse( value );
+                  }
+                },
               ),
 
               SizedBox( height: 15 ),
@@ -87,7 +126,7 @@ class _ProductForm extends StatelessWidget {
                 activeColor: Colors.indigo,
                 onChanged: ( value ) {},
                 title: Text('Disponible'),
-                value: true, 
+                value: product.available, 
               ),
 
               SizedBox( height: 30 )
