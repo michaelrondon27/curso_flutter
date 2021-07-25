@@ -17,7 +17,7 @@ class ProductImage extends StatelessWidget {
         height: 450,
         width: double.infinity,
       ),
-      padding: EdgeInsets.only( left: 10, right: 10, top: 10 ),
+      padding: EdgeInsets.only( left: 10, right: 10, top: 5 ),
     );
   }
 
