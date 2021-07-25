@@ -9,6 +9,7 @@ class Product {
   });
 
   bool available;
+  String? id;
   String name;
   String? picture;
   double price;
