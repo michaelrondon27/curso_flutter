@@ -12,18 +12,21 @@ class ProductImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       child: Container(
-        child: ClipRRect(
-          borderRadius: BorderRadius.only( topLeft: Radius.circular( 45 ), topRight: Radius.circular( 45 ) ),
-          child: this.url == null
-            ? Image(
+        child: Opacity(
+          child: ClipRRect(
+            borderRadius: BorderRadius.only( topLeft: Radius.circular( 45 ), topRight: Radius.circular( 45 ) ),
+            child: this.url == null
+              ? Image(
+                fit: BoxFit.cover,
+                  image: AssetImage('assets/no-image.png')
+                )
+              : FadeInImage(
               fit: BoxFit.cover,
-                image: AssetImage('assets/no-image.png')
-              )
-            : FadeInImage(
-            fit: BoxFit.cover,
-            image: NetworkImage( this.url! ),
-            placeholder: AssetImage('assets/jar-loading.gif'),
+              image: NetworkImage( this.url! ),
+              placeholder: AssetImage('assets/jar-loading.gif'),
+            ),
           ),
+          opacity: 0.9,
         ),
         decoration: _buildBoxDecoration(),
         height: 450,
@@ -42,6 +45,6 @@ class ProductImage extends StatelessWidget {
         offset: Offset(0, 5)
       )
     ],
-    color: Colors.red
+    color: Colors.black
   );
 }
