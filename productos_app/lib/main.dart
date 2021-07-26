@@ -25,9 +25,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: 'login',
       routes: {
-        'home' : ( _ ) => HomeScreen(),
-        'login': ( _ ) => LoginScreen(),
-        'product': ( _ ) => ProductScreen(),
+        'home'    : ( _ ) => HomeScreen(),
+        'login'   : ( _ ) => LoginScreen(),
+        'product' : ( _ ) => ProductScreen(),
+        'register': ( _ ) => RegisterScreen()
       },
       theme: ThemeData.light().copyWith(
         appBarTheme: AppBarTheme(
