@@ -64,6 +64,8 @@ class _ProductScreenBody extends StatelessWidget {
                         );
 
                         if ( xFile == null ) return;
+
+                        productsService.updateSelectedProductImage( xFile.path );
                       },
                     ),
                     right: 20,
