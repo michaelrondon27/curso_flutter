@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:productos_app/screens/screens.dart';
 import 'package:productos_app/services/services.dart';
 
 class CheckAuthScreen extends StatelessWidget {
@@ -13,15 +14,28 @@ class CheckAuthScreen extends StatelessWidget {
         child: FutureBuilder(
           builder: ( BuildContext context, AsyncSnapshot snapshot ) {
             if ( !snapshot.hasData )
-              return Text('Espere');
+              return Text('');
 
-            // if ( snapshot.data == '' ) {
+            if ( snapshot.data == '' ) {
 
-            // }
+              Future.microtask(() {
+                Navigator.pushReplacement(context, PageRouteBuilder(
+                  pageBuilder: ( _, __, ___ ) => LoginScreen(),
+                  transitionDuration: Duration( seconds: 0 )
+                ));
+              });
 
-            Future.microtask(() {
-              Navigator.of(context).pushReplacementNamed('home');
-            });
+            } else {
+
+              Future.microtask(() {
+                Navigator.pushReplacement(context, PageRouteBuilder(
+                  pageBuilder: ( _, __, ___ ) => HomeScreen(),
+                  transitionDuration: Duration( seconds: 0 )
+                ));
+              });
+
+            }
+
 
             return Container();
           },
