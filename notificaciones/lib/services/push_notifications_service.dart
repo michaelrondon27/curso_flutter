@@ -15,15 +15,15 @@ class PushNotificationsService {
   static Stream<String> get messagesStream => _messageStream.stream;
 
   static Future _backgroundHandler( RemoteMessage message ) async {
-    _messageStream.add( message.notification?.body ?? '' );
+    _messageStream.add( message.data['product'] ?? 'No data' );
   }
 
   static Future _onMessageHandler( RemoteMessage message ) async {
-    _messageStream.add( message.notification?.body ?? '' );
+    _messageStream.add( message.data['product'] ?? 'No data' );
   }
 
   static Future _onMessageOpenApp( RemoteMessage message ) async {
-    _messageStream.add( message.notification?.body ?? '' );
+    _messageStream.add( message.data['product'] ?? 'No data' );
   }
 
   static Future initializeApp() async {
