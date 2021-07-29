@@ -68,7 +68,11 @@ class _CategoryButton extends StatelessWidget {
         margin: EdgeInsets.symmetric( horizontal: 10 ),
         width: 40
       ),
-      onTap: () {},
+      onTap: () {
+        final newsService = Provider.of<NewsService>(context, listen: false);
+
+        newsService.selectedCategory = category.name;
+      },
     );
   }
 }
