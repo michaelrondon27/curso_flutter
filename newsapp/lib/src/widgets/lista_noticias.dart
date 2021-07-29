@@ -36,8 +36,62 @@ class _Noticia extends StatelessWidget {
 
         _TarjetaTitulo( noticia ),
 
-        _TarjetaImagen( noticia )
+        _TarjetaImagen( noticia ),
+
+        _TarjetaBody( noticia ),
+
+        _TarjetaBotones(),
+
+        SizedBox( height: 10 ),
+
+        Divider()
       ],
+    );
+  }
+}
+
+class _TarjetaBody extends StatelessWidget {
+  final Article noticia;
+
+  const _TarjetaBody( this.noticia );
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text( (noticia.description != null) ? noticia.description! : '' ),
+      padding: EdgeInsets.symmetric( horizontal: 20 )
+    );
+  }
+}
+
+class _TarjetaBotones extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        children: [
+          RawMaterialButton(
+            child: Icon( Icons.star_border ),
+            fillColor: miTema.accentColor,
+            onPressed: () {},
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular( 20 )
+            ),
+          ),
+
+          SizedBox( width: 10 ),
+
+          RawMaterialButton(
+            child: Icon( Icons.more ),
+            fillColor: Colors.blue,
+            onPressed: () {},
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular( 20 )
+            ),
+          )
+        ],
+        mainAxisAlignment: MainAxisAlignment.center,
+      )
     );
   }
 }
@@ -50,7 +104,18 @@ class _TarjetaImagen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      child: ClipRRect(
+        borderRadius: BorderRadius.only( bottomRight: Radius.circular( 50 ), topLeft: Radius.circular( 50 ) ),
+        child: Container(
+          child: ( noticia.urlToImage != null ) 
+          ? FadeInImage(
+              image: NetworkImage( noticia.urlToImage! ),
+              placeholder: AssetImage('assets/img/giphy.gif'),
+            )
+          : Image(image: AssetImage('assets/img/no-image.png'))
+        ),
+      ),
+      margin: EdgeInsets.symmetric( vertical: 10 ),
     );
   }
 }
