@@ -40,6 +40,8 @@ class _Navegacion extends StatelessWidget {
 class _Paginas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final navegacionModel = Provider.of<_NavegacionModel>(context);
+    
     return PageView(
       children: [
         Container(
@@ -50,6 +52,7 @@ class _Paginas extends StatelessWidget {
           color: Colors.green,
         )
       ],
+      controller: navegacionModel.pageController,
       physics: NeverScrollableScrollPhysics(),
     );
   }
@@ -58,11 +61,17 @@ class _Paginas extends StatelessWidget {
 class _NavegacionModel with ChangeNotifier {
   int _paginaActual = 0;
 
+  PageController _pageController = new PageController();
+
   int get paginaActual => this._paginaActual;
 
   set paginaActual( int value ) {
     this._paginaActual = value;
 
+    this._pageController.animateToPage(value, duration: Duration( milliseconds: 250 ), curve: Curves.easeOut );
+
     notifyListeners();
   }
+
+  PageController get pageController => this._pageController;
 }
