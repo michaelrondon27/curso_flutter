@@ -32,6 +32,8 @@ class NewsService with ChangeNotifier {
     categories.forEach( (item) {
       this.categoryArticles[item.name] = [];
     });
+
+    this.getArticlesByCategory( this.selectedcategory );
   }
 
   String get selectedcategory => this._selectedCategory;
@@ -43,6 +45,8 @@ class NewsService with ChangeNotifier {
 
     notifyListeners();
   }
+
+  List<Article> get getArticulosCategoriaSeleccionada => this.categoryArticles[ this.selectedcategory ]!;
 
   getTopHeadlines() async {
     final url = Uri.https('$_URL_NEWS', '/v2/top-headlines', {
