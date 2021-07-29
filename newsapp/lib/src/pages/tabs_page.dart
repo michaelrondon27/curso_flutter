@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:newsapp/src/pages/tab1_page.dart';
+import 'package:newsapp/src/pages/tab2_page.dart';
 
 class TabsPage extends StatelessWidget {
   @override
@@ -48,9 +49,7 @@ class _Paginas extends StatelessWidget {
       children: [
         Tab1Page(),
 
-        Container(
-          color: Colors.green,
-        )
+        Tab2Page()
       ],
       controller: navegacionModel.pageController,
       physics: NeverScrollableScrollPhysics(),
