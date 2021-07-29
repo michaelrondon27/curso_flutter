@@ -30,24 +30,24 @@ class NewsResponse {
 
 class Article {
   Article({
-    required this.source,
-    required this.author,
-    required this.title,
-    required this.description,
-    required this.url,
-    required this.urlToImage,
+    this.author,
+    this.content,
+    this.description,
     required this.publishedAt,
-    required this.content,
+    required this.source,
+    required this.title,
+    required this.url,
+    this.urlToImage,
   });
 
-  Source source;
-  String author;
-  String title;
-  String description;
-  String url;
-  String urlToImage;
+  String? author;
+  String? content;
+  String? description;
   DateTime publishedAt;
-  String content;
+  Source source;
+  String title;
+  String url;
+  String? urlToImage;
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
     source     : Source.fromJson(json["source"]),
@@ -74,11 +74,11 @@ class Article {
 
 class Source {
   Source({
-    required this.id,
+    this.id,
     required this.name,
   });
 
-  String id;
+  String? id;
   String name;
 
   factory Source.fromJson(Map<String, dynamic> json) => Source(
