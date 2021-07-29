@@ -10,7 +10,7 @@ final _URL_NEWS = 'newsapi.org';
 class NewsService with ChangeNotifier {
   List<Article> headlines = [];
 
-  NewsServive() {
+  NewsService() {
     this.getTopHeadlines();
   }
 
