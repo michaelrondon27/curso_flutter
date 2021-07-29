@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/src/models/category_model.dart';
 import 'package:provider/provider.dart';
 
 import 'package:newsapp/src/services/news_service.dart';
@@ -27,14 +28,16 @@ class _ListaCategorias extends StatelessWidget {
 
     return ListView.builder(
       itemBuilder: ( BuildContext context, int index ) {
+        final cName = categories[index].name;
+
         return Padding(
           child: Column(
             children: [
-              Icon( categories[index].icon ),
+              _CategoryButton( categories[index] ),
               
               SizedBox( height: 5 ),
 
-              Text( categories[index].name )
+              Text( '${ cName[0].toUpperCase() }${ cName.substring(1) }' )
             ]
           ),
           padding: EdgeInsets.all( 8 )
@@ -43,6 +46,29 @@ class _ListaCategorias extends StatelessWidget {
       itemCount: categories.length,
       physics: BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
+    );
+  }
+}
+
+class _CategoryButton extends StatelessWidget {
+  final CategoryModel category;
+
+  const _CategoryButton( this.category );
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      child: Container(
+        child: Icon( category.icon, color: Colors.black54 ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.circle
+        ),
+        height: 40,
+        margin: EdgeInsets.symmetric( horizontal: 10 ),
+        width: 40
+      ),
+      onTap: () {},
     );
   }
 }
