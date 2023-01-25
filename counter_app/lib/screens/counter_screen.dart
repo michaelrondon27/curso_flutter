@@ -31,31 +31,34 @@ class _CounterScreenState extends State<CounterScreen> {
           ]
         ),
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          FloatingActionButton(
-            child: const Icon(Icons.exposure_plus_1_outlined),
-            onPressed: () {
-              setState(() { counter++; });
-            }
-          ),
-          FloatingActionButton(
-            child: const Icon(Icons.exposure_outlined),
-            onPressed: () {
-              setState(() { counter = 0; });
-            }
-          ),
-          FloatingActionButton(
-            child: const Icon(Icons.exposure_minus_1_outlined),
-            onPressed: () {
-              setState(() { counter--; });
-            }
-          )
-        ],
-      ),
+      floatingActionButton: const CustomFloatingActions(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
   
+}
+
+class CustomFloatingActions extends StatelessWidget {
+  const CustomFloatingActions({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: const [
+        FloatingActionButton(
+          child: Icon(Icons.exposure_plus_1_outlined),
+          onPressed: null
+        ),
+        FloatingActionButton(
+          child: Icon(Icons.exposure_outlined),
+          onPressed: null
+        ),
+        FloatingActionButton(
+          child: Icon(Icons.exposure_minus_1_outlined),
+          onPressed: null
+        )
+      ],
+    );
+  }
 }
