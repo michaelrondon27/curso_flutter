@@ -7,24 +7,27 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const fontSize = TextStyle(fontSize: 30);
+    int counter = 0;
 
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text("HomeScreen"),
+        title: const Text('HomeScreen'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text("Número de Clicks", style: fontSize),
-            Text("10", style: fontSize)
+          children: [
+            const Text('Número de Clicks', style: fontSize),
+            Text('$counter', style: fontSize)
           ]
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {}
+        onPressed: () {
+          counter++;
+        }
       ),
     );
   }
