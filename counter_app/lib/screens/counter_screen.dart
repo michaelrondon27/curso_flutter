@@ -13,6 +13,13 @@ class _CounterScreenState extends State<CounterScreen> {
 
   int counter = 0;
 
+  void decrease() => setState(() => counter--);
+
+  void increase() => setState(() => counter++);
+
+  void reset() => setState(() => counter = 0);
+
+
   @override
   Widget build(BuildContext context) {
     const fontSize = TextStyle(fontSize: 30);
@@ -31,7 +38,11 @@ class _CounterScreenState extends State<CounterScreen> {
           ]
         ),
       ),
-      floatingActionButton: const CustomFloatingActions(),
+      floatingActionButton: CustomFloatingActions(
+        decreaseFn: decrease,
+        increaseFn: increase,
+        resetFn: reset,
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
@@ -39,24 +50,34 @@ class _CounterScreenState extends State<CounterScreen> {
 }
 
 class CustomFloatingActions extends StatelessWidget {
-  const CustomFloatingActions({super.key});
+
+  final Function decreaseFn;
+  final Function increaseFn;
+  final Function resetFn;
+
+  const CustomFloatingActions({
+    Key? key,
+    required this.decreaseFn,
+    required this.increaseFn,
+    required this.resetFn
+  }): super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: const [
+      children: [
         FloatingActionButton(
-          child: Icon(Icons.exposure_plus_1_outlined),
-          onPressed: null
+          child: const Icon(Icons.exposure_plus_1_outlined),
+          onPressed: () => increaseFn()
         ),
         FloatingActionButton(
-          child: Icon(Icons.exposure_outlined),
-          onPressed: null
+          child: const Icon(Icons.exposure_outlined),
+          onPressed: () => resetFn()
         ),
         FloatingActionButton(
-          child: Icon(Icons.exposure_minus_1_outlined),
-          onPressed: null
+          child: const Icon(Icons.exposure_minus_1_outlined),
+          onPressed: () => decreaseFn()
         )
       ],
     );
