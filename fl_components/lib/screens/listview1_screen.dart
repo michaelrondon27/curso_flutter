@@ -16,7 +16,7 @@ class Listview1Screen extends StatelessWidget {
         children: [
           ...options.map((game) => ListTile(
             title: Text(game),
-            trailing: Icon(Icons.arrow_forward_ios_outlined),
+            trailing: const Icon(Icons.arrow_forward_ios_outlined),
           )).toList()
         ],
       ),
