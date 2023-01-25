@@ -13,11 +13,12 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          children: [
-            Text("Clicks Counter"),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text("Número de Clicks"),
             Text("10")
-          ],
-        )
+          ]
+        ),
       )
     );
   }
