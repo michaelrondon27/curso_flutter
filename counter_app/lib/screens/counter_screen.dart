@@ -31,12 +31,30 @@ class _CounterScreenState extends State<CounterScreen> {
           ]
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          setState(() { counter++; });
-        }
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          FloatingActionButton(
+            child: const Icon(Icons.exposure_plus_1_outlined),
+            onPressed: () {
+              setState(() { counter++; });
+            }
+          ),
+          FloatingActionButton(
+            child: const Icon(Icons.exposure_outlined),
+            onPressed: () {
+              setState(() { counter = 0; });
+            }
+          ),
+          FloatingActionButton(
+            child: const Icon(Icons.exposure_minus_1_outlined),
+            onPressed: () {
+              setState(() { counter--; });
+            }
+          )
+        ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
   
