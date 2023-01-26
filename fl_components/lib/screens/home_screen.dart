@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
           leading: const Icon(Icons.access_time_outlined),
           title: const Text('Nombre de ruta'),
           onTap: () {
-            
+            Navigator.pushNamed(context, '/card');
           }
         ), 
         separatorBuilder: (_, __) => const Divider() 
