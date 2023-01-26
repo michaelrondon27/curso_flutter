@@ -52,6 +52,14 @@ class _ListviewBuilderScreenState extends State<ListviewBuilderScreen> {
     setState(() {});
   }
 
+  Future<void> onRefresh() async {
+    await Future.delayed(const  Duration(seconds: 2));
+    final lastId = imagesIds.last;
+    imagesIds.clear();
+    imagesIds.add(lastId + 1);
+    add5();
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -64,17 +72,21 @@ class _ListviewBuilderScreenState extends State<ListviewBuilderScreen> {
         removeBottom: true,
         child: Stack(
           children: [
-            ListView.builder(
-              controller: scrollController,
-              itemCount: imagesIds.length,
-              itemBuilder: (context, i) => FadeInImage(
-                fit: BoxFit.cover,
-                height: 300,
-                image: NetworkImage('https://picsum.photos/500/300?image=${imagesIds[i]}'),
-                placeholder: const AssetImage('assets/jar-loading.gif'), 
-                width: double.infinity
+            RefreshIndicator(
+              color: AppTheme.primaryColor,
+              onRefresh: onRefresh,
+              child: ListView.builder(
+                controller: scrollController,
+                itemCount: imagesIds.length,
+                itemBuilder: (context, i) => FadeInImage(
+                  fit: BoxFit.cover,
+                  height: 300,
+                  image: NetworkImage('https://picsum.photos/500/300?image=${imagesIds[i]}'),
+                  placeholder: const AssetImage('assets/jar-loading.gif'), 
+                  width: double.infinity
+                ),
+                physics: const BouncingScrollPhysics(),
               ),
-              physics: const BouncingScrollPhysics(),
             ),
 
             if (isLoading)
