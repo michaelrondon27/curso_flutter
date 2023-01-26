@@ -9,6 +9,17 @@ class AppTheme {
       color: primaryColor,
       elevation: 0
     ),
+    elevatedButtonTheme: const ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStatePropertyAll<Color>(primaryColor),
+        elevation: MaterialStatePropertyAll<double>(0),
+        shape: MaterialStatePropertyAll<OutlinedBorder>(StadiumBorder())
+      )
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: primaryColor,
+      elevation: 5
+    ),
     primaryColor: primaryColor,
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
