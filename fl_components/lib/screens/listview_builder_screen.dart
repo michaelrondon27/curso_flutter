@@ -36,6 +36,14 @@ class _ListviewBuilderScreenState extends State<ListviewBuilderScreen> {
 
     add5();
     setState(() => isLoading = false);
+
+    if (scrollController.position.pixels + 100 <= scrollController.position.maxScrollExtent) return;
+
+    scrollController.animateTo(
+      scrollController.position.pixels + 120,
+      curve: Curves.fastOutSlowIn,
+      duration: const Duration(milliseconds: 300)
+    );
   }
 
   void add5() {
@@ -69,11 +77,12 @@ class _ListviewBuilderScreenState extends State<ListviewBuilderScreen> {
               physics: const BouncingScrollPhysics(),
             ),
 
-            Positioned(
-              bottom: 40,
-              left: size.width * 0.5 -30,
-              child: const _LoadingIcon()
-            )
+            if (isLoading)
+              Positioned(
+                bottom: 40,
+                left: size.width * 0.5 -30,
+                child: const _LoadingIcon()
+              )
           ],
         ),
       )
