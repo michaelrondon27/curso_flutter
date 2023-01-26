@@ -11,10 +11,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Material App',
       initialRoute: AppRoutes.initialRoute,
+      onGenerateRoute: AppRoutes.onGenerateRoute,
       routes: AppRoutes.getAppRoutes(),
-      onGenerateRoute: AppRoutes.onGenerateRoute 
+      theme: ThemeData.light().copyWith(
+        appBarTheme: const AppBarTheme(
+          color: Colors.indigo,
+          elevation: 0
+        ),
+        primaryColor: Colors.indigo
+      ),
+      title: 'Material App'
     );
   }
 
