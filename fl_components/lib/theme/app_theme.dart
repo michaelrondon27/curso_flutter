@@ -5,10 +5,13 @@ class AppTheme {
   static const Color primaryColor = Colors.indigo;
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
+    // AppBar
     appBarTheme: const AppBarTheme(
       color: primaryColor,
       elevation: 0
     ),
+
+    // ElvatedButton
     elevatedButtonTheme: const ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStatePropertyAll<Color>(primaryColor),
@@ -16,10 +19,14 @@ class AppTheme {
         shape: MaterialStatePropertyAll<OutlinedBorder>(StadiumBorder())
       )
     ),
+
+    // FLoatingActionButton
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: primaryColor,
       elevation: 5
     ),
+
+    // InputDEcoration
     inputDecorationTheme: const InputDecorationTheme(
       border: OutlineInputBorder(
         borderRadius: BorderRadius.only(
@@ -43,7 +50,11 @@ class AppTheme {
         borderSide: BorderSide(color: primaryColor)
       )
     ),
+
+    // PrimaryColor
     primaryColor: primaryColor,
+
+    // TextButton
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
         foregroundColor: const MaterialStatePropertyAll<Color>(primaryColor),

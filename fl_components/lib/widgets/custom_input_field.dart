@@ -5,7 +5,9 @@ class CustomInputField extends StatelessWidget {
   final String? helperText;
   final String? hintText;
   final IconData? icon;
+  final TextInputType? keyboardType;
   final String? labelText;
+  final bool obscureText;
   final IconData? suffixIcon;
 
   const CustomInputField({
@@ -13,7 +15,9 @@ class CustomInputField extends StatelessWidget {
     this.helperText,
     this.hintText,
     this.icon,
+    this.keyboardType,
     this.labelText,
+    this.obscureText = false,
     this.suffixIcon
   });
 
@@ -30,6 +34,8 @@ class CustomInputField extends StatelessWidget {
         suffixIcon: suffixIcon == null ? null : Icon(suffixIcon)
       ),
       initialValue: '',
+      keyboardType: keyboardType,
+      obscureText: obscureText,
       onChanged: (value) => value,
       textCapitalization: TextCapitalization.words,
       validator: (value) {
