@@ -9,7 +9,13 @@ class AppTheme {
       color: primaryColor,
       elevation: 0
     ),
-    primaryColor: primaryColor
+    primaryColor: primaryColor,
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: const MaterialStatePropertyAll<Color>(primaryColor),
+        overlayColor: MaterialStatePropertyAll<Color>(primaryColor.withOpacity(0.1))
+      )
+    )
   );
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
