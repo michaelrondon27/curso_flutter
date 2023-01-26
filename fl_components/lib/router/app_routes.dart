@@ -9,6 +9,7 @@ class AppRoutes {
 
   static final menuOptions = <MenuOption> {
     MenuOption(icon: Icons.add_alarm_outlined, name: 'Alertas - Alerts', route: '/alert', screen: const AlertScreen()),
+    MenuOption(icon: Icons.supervised_user_circle_outlined, name: 'Circle Avatar', route: '/avatar', screen: const AvatarScreen()),
     MenuOption(icon: Icons.credit_card, name: 'Tarjetas - Cards', route: '/cards', screen: const CardScreen()),
     MenuOption(icon: Icons.home_max_sharp, name: 'Home Screen', route: '/home', screen: const HomeScreen()),
     MenuOption(icon: Icons.list_alt, name: 'Listview tipo 1', route: '/listview1', screen: const Listview1Screen()),
