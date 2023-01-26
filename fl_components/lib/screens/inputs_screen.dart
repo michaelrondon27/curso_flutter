@@ -30,26 +30,34 @@ class InputsScreen extends StatelessWidget {
             key: myFormKey,
             child: Column(
               children: [
-                const CustomInputField(
+                CustomInputField(
+                  formProperty: 'first_name',
+                  formValues: formValues,
                   hintText: 'Nombre del usuario',
                   labelText: 'Nombre'
                 ),
                 const SizedBox(height: 30),
           
-                const CustomInputField(
+                CustomInputField(
+                  formProperty: 'last_name',
+                  formValues: formValues,
                   hintText: 'Apellido del usuario',
                   labelText: 'Apellido'
                 ),
                 const SizedBox(height: 30),
           
-                const CustomInputField(
+                CustomInputField(
+                  formProperty: 'email',
+                  formValues: formValues,
                   hintText: 'Correo del usuario',
                   keyboardType: TextInputType.emailAddress,
                   labelText: 'Correo'
                 ),
                 const SizedBox(height: 30),
           
-                const CustomInputField(
+                CustomInputField(
+                  formProperty: 'password',
+                  formValues: formValues,
                   hintText: 'Contraseña del usuario',
                   labelText: 'Contraseña',
                   obscureText: true
@@ -67,6 +75,8 @@ class InputsScreen extends StatelessWidget {
                     if (!myFormKey.currentState!.validate()) {
                       return;
                     }
+
+                    print(formValues);
                   },
                 )
               ],
