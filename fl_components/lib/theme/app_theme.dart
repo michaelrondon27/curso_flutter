@@ -20,6 +20,29 @@ class AppTheme {
       backgroundColor: primaryColor,
       elevation: 5
     ),
+    inputDecorationTheme: const InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(10),
+          topRight: Radius.circular(10)
+        )
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(10),
+          topRight: Radius.circular(10)
+        ),
+        borderSide: BorderSide(color: primaryColor)
+      ),
+      floatingLabelStyle: TextStyle(color: primaryColor),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(10),
+          topRight: Radius.circular(10)
+        ),
+        borderSide: BorderSide(color: primaryColor)
+      )
+    ),
     primaryColor: primaryColor,
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
