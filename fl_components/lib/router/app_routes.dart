@@ -15,13 +15,15 @@ class AppRoutes {
     MenuOption(icon: Icons.list, name: 'Listview tipo 2', route: '/listview2', screen: const Listview2Screen()),
   };
 
-  static Map<String, Widget Function(BuildContext)> routes = {
-    '/alert': (BuildContext context) => const AlertScreen(),
-    '/card': (BuildContext context) => const CardScreen(),
-    '/home': (BuildContext context) => const HomeScreen(),
-    '/listview1': (BuildContext context) => const Listview1Screen(),
-    '/listview2': (BuildContext context) => const Listview2Screen(),
-  };
+  static Map<String, Widget Function(BuildContext)> getAppRoutes() {
+    Map<String, Widget Function(BuildContext)> appRoutes = {};
+
+    for (final option in menuOptions) {
+      appRoutes.addAll({option.route: (BuildContext context) => option.screen});
+    }
+
+    return appRoutes;
+  }
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) => MaterialPageRoute(builder: (context) => const AlertScreen());
 
