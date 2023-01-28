@@ -33,6 +33,10 @@ class MovieModel {
   double voteAverage;
   int voteCount;
 
+  get fullBackdropPath {
+    return (backdropPath != null) ? 'https://image.tmdb.org/t/p/w500${backdropPath}' : 'https://i.stack.imgur.com/GNhxO.png';
+  }
+
   get fullPosterImg {
     return (posterPath != null) ? 'https://image.tmdb.org/t/p/w500${posterPath}' : 'https://i.stack.imgur.com/GNhxO.png';
   }
