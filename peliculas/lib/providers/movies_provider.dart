@@ -22,12 +22,17 @@ class MoviesProvider extends ChangeNotifier {
     getPopularMovies();
   }
 
-  Future<String> _getJsonData(String endpoint, {int page = 1}) async {
-    var url = Uri.https(_baseUrl, endpoint, {
+  Future<String> _getJsonData(String endpoint, {int page = 0, String query = '' }) async {
+    final parameters = {
       'api_key': _apiKey,
-      'language': _language,
-      'page': '$page'
-    });
+      'language': _language
+    };
+
+    if (page > 0) parameters.addAll({'page': '$page'});
+
+    if (query.isNotEmpty) parameters.addAll({'query': query});
+
+    final url = Uri.https(_baseUrl, endpoint, parameters);
 
     final response = await http.get(url);
     return response.body;
@@ -60,6 +65,13 @@ class MoviesProvider extends ChangeNotifier {
     moviesCast[movieId] = creditsResponse.cast;
 
     return creditsResponse.cast;
+  }
+
+  Future<List<MovieModel>> searchMovies(String query) async {
+    final jsonData = await _getJsonData('3/search/movie', query: query);
+    final searchResponse = SearchResponse.fromJson(jsonData);
+
+    return searchResponse.results;
   }
 
 }
