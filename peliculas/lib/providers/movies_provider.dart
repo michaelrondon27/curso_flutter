@@ -92,7 +92,7 @@ class MoviesProvider extends ChangeNotifier {
       (_) => debouncer.value = query
     );
 
-    Future.delayed(Duration(milliseconds: 301)).then((_) => timer.cancel());
+    Future.delayed(const Duration(milliseconds: 301)).then((_) => timer.cancel());
   }
 
 }
