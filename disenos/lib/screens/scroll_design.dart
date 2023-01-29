@@ -42,12 +42,30 @@ class MainContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        
-      ]
+
+    const textStyle = TextStyle(
+      color: Colors.white,
+      fontSize: 50,
+      fontWeight: FontWeight.bold
+    );
+    
+    return SafeArea(
+      bottom: false,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 30),
+
+          const Text('11°', style: textStyle),
+    
+          const Text('Miércoles', style: textStyle),
+    
+          Expanded(child: Container()),
+    
+          const Icon(Icons.keyboard_arrow_down, size: 100, color: Colors.white)
+        ]
+      ),
     );
   }
 
