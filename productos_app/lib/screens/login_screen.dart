@@ -10,12 +10,26 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AuthBackground(
-        child: Container(
-          color: Colors.red,
-          height: 300,
-          width: double.infinity
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 250),
+
+              CardContainer(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 10),
+
+                    Text('Login', style: Theme.of(context).textTheme.headlineMedium),
+
+                    const SizedBox(height: 30)
+                  ]
+                )
+              )
+            ]
+          )
         )
-      ),
+      )
     );
   }
 }
