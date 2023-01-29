@@ -17,6 +17,14 @@ class MyApp extends StatelessWidget {
         '/login': (_) => const LoginScreen()
       },
       theme: ThemeData.light().copyWith(
+        appBarTheme: const AppBarTheme(
+          color: Colors.indigo,
+          elevation: 0
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.indigo,
+          elevation: 0
+        ),
         scaffoldBackgroundColor: Colors.grey[300]
       ),
       title: 'Productos App'
