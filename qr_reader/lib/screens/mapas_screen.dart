@@ -13,12 +13,19 @@ class MapasScreen extends StatelessWidget {
     final scans = Provider.of<ScanListProvider>(context).scans;
 
     return ListView.builder(
-      itemBuilder: (_, i) => ListTile(
-        leading: Icon(Icons.map, color: Theme.of(context).primaryColor),
-        onTap: () {},
-        subtitle: Text(scans[i].id.toString()),
-        title: Text(scans[i].valor),
-        trailing: const Icon(Icons.keyboard_arrow_right, color: Colors.grey)
+      itemBuilder: (_, i) => Dismissible(
+        background: Container(
+          color: Colors.red,
+        ),
+        key: UniqueKey(),
+        onDismissed: (DismissDirection direction) => Provider.of<ScanListProvider>(context, listen: false).borrarScanPorId(scans[i].id!),
+        child: ListTile(
+          leading: Icon(Icons.map, color: Theme.of(context).primaryColor),
+          onTap: () {},
+          subtitle: Text(scans[i].id.toString()),
+          title: Text(scans[i].valor),
+          trailing: const Icon(Icons.keyboard_arrow_right, color: Colors.grey)
+        ),
       ),
       itemCount: scans.length
     );
