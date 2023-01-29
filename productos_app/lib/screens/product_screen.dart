@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'package:productos_app/providers/product_form_provider.dart';
@@ -118,6 +119,7 @@ class _ProductForm extends StatelessWidget {
                   labelText: 'Precio:'
                 ),
                 initialValue: '${product.price}',
+                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}'))],
                 keyboardType: TextInputType.number,
                 onChanged: (value) => (double.tryParse(value) == null) ? product.price = 0 : product.price = double.parse(value)
               ),
@@ -126,7 +128,7 @@ class _ProductForm extends StatelessWidget {
 
               SwitchListTile.adaptive(
                 activeColor: Colors.indigo,
-                onChanged: (value) {},
+                onChanged: productForm.updateAvailability,
                 title: const Text('Disponible'),
                 value: product.available
               ),

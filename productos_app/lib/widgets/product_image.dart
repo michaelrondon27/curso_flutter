@@ -17,18 +17,21 @@ class ProductImage extends StatelessWidget {
         decoration: _bvuildBoxDecoration(),
         height: 450,
         width: double.infinity,
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(topLeft: Radius.circular(45), topRight: Radius.circular(45)),
-          child: (url == null)
-            ? const Image(
-                fit: BoxFit.cover,
-                image: AssetImage('assets/no-image.png')
-              )
-            : FadeInImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(url!),
-                placeholder: const AssetImage('assets/jar-loading.gif'),
-              )
+        child: Opacity(
+          opacity: 0.9,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(45), topRight: Radius.circular(45)),
+            child: (url == null)
+              ? const Image(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/no-image.png')
+                )
+              : FadeInImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(url!),
+                  placeholder: const AssetImage('assets/jar-loading.gif'),
+                )
+          ),
         )
       ),
     );
@@ -42,6 +45,7 @@ class ProductImage extends StatelessWidget {
         color: Colors.black12,
         offset: Offset(0, 5)
       )
-    ]
+    ],
+    color: Colors.black
   );
 }
