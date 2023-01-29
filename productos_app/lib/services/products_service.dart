@@ -16,6 +16,9 @@ class ProductsService extends ChangeNotifier {
   }
 
   Future<List<ProductModel>> loadProducts() async {
+    isLoading = true;
+    notifyListeners();
+
     final url = Uri.https(_baseUrl, 'products.json');
     final resp = await http.get(url);
 
@@ -26,6 +29,9 @@ class ProductsService extends ChangeNotifier {
       tempProduct.id = key;
       products.add(tempProduct);
     });
+
+    isLoading = false;
+    notifyListeners();
 
     return products;
   }
