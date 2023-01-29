@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:disenos/widgets/background.dart';
+import 'package:disenos/widgets/card_table.dart';
 import 'package:disenos/widgets/custom_bottom_navigation.dart';
 import 'package:disenos/widgets/page_title.dart';
 
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
           _HomeBody()
         ]
       ),
-      bottomNavigationBar: CustomBottomNavigation()
+      bottomNavigationBar: const CustomBottomNavigation()
     );
   }
 }
@@ -31,8 +32,10 @@ class _HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: [
-          PageTitle()
+        children: const [
+          PageTitle(),
+
+          CardTable()
         ]
       )
     );
