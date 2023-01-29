@@ -25,7 +25,7 @@ class LoginScreen extends StatelessWidget {
 
                     const SizedBox(height: 30),
 
-                    _LoginForm()
+                    const _LoginForm()
                   ]
                 )
               ),
@@ -54,46 +54,53 @@ class _LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Form(
-        child: Column(
-          children: [
-            TextFormField(
-              autocorrect: false,
-              decoration: InputDecorations.authInputDecoration(
-                hintText: 'john.doe@gmail.com',
-                labelText: 'Correo electrónico',
-                prefixIcon: Icons.alternate_email_rounded
-              ),
-              keyboardType: TextInputType.emailAddress
-            ), 
-
-            const SizedBox(height: 30),
-
-            TextFormField(
-              autocorrect: false,
-              decoration: InputDecorations.authInputDecoration(
-                hintText: '*****',
-                labelText: 'Contraseña',
-                prefixIcon: Icons.lock_outline
-              ),
-              obscureText: true
+    return Form(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      child: Column(
+        children: [
+          TextFormField(
+            autocorrect: false,
+            decoration: InputDecorations.authInputDecoration(
+              hintText: 'john.doe@gmail.com',
+              labelText: 'Correo electrónico',
+              prefixIcon: Icons.alternate_email_rounded
             ),
+            keyboardType: TextInputType.emailAddress,
+            validator: (value) {
+              String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+ 
+              RegExp regExp  = new RegExp(pattern);
 
-            const SizedBox(height: 30),
+              return regExp.hasMatch(value ?? '') ? null : 'El valor ingresado no luce como un correo';
+            }
+          ), 
 
-            MaterialButton(
-              color: Colors.deepPurple,
-              disabledColor: Colors.grey,
-              onPressed: () {},
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                child: const Text('Ingresar', style: TextStyle(color: Colors.white)),
-              )
+          const SizedBox(height: 30),
+
+          TextFormField(
+            autocorrect: false,
+            decoration: InputDecorations.authInputDecoration(
+              hintText: '*****',
+              labelText: 'Contraseña',
+              prefixIcon: Icons.lock_outline
+            ),
+            obscureText: true,
+            validator: (value) => (value != null && value.length >= 6) ? null : 'La contraseña debe de ser de 6 caracteres'
+          ),
+
+          const SizedBox(height: 30),
+
+          MaterialButton(
+            color: Colors.deepPurple,
+            disabledColor: Colors.grey,
+            onPressed: () {},
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+              child: const Text('Ingresar', style: TextStyle(color: Colors.white)),
             )
-          ]
-        )
+          )
+        ]
       )
     );
   }
