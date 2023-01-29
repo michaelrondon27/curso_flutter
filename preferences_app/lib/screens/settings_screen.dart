@@ -2,11 +2,22 @@ import 'package:flutter/material.dart';
 
 import 'package:preferences_app/widgets/widgets.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
 
   static const String routerName = '/settings';
    
   const SettingsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  
+  bool isDarkmode = false;
+  int gender = 1;
+  String name = 'Michael';
   
   @override
   Widget build(BuildContext context) {
@@ -30,16 +41,16 @@ class SettingsScreen extends StatelessWidget {
             const Divider(),
 
             SwitchListTile.adaptive(
-              onChanged: (value) {},
+              onChanged: (value) => setState(() => isDarkmode = value),
               title: const Text('Darkmode'),
-              value: true
+              value: isDarkmode
             ),
 
             const Divider(),
 
             RadioListTile<int>(
-              groupValue: 1,
-              onChanged: (value) { },
+              groupValue: gender,
+              onChanged: (value) => setState(() => gender = value ?? 1),
               title: const Text('Masculino'),
               value: 1
             ),
@@ -47,8 +58,8 @@ class SettingsScreen extends StatelessWidget {
             const Divider(),
 
             RadioListTile<int>(
-              groupValue: 1,
-              onChanged: (value) { },
+              groupValue: gender,
+              onChanged: (value) => setState(() => gender = value ?? 2),
               title: const Text('Femenino'),
               value: 2
             ),
@@ -62,7 +73,8 @@ class SettingsScreen extends StatelessWidget {
                   helperText: 'Nombre del usuario',
                   labelText: 'Nombre'
                 ),
-                initialValue: 'Michael'
+                initialValue: name,
+                onChanged: (value) => setState(() => name = value),
               ),
             )
           ],
@@ -71,4 +83,5 @@ class SettingsScreen extends StatelessWidget {
       drawer: const SideMenu()
     );
   }
+
 }
