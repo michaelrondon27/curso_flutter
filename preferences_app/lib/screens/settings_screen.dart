@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:preferences_app/shared/preferences.dart';
 import 'package:preferences_app/widgets/widgets.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -14,10 +15,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  
-  bool isDarkmode = false;
-  int gender = 1;
-  String name = 'Michael';
   
   @override
   Widget build(BuildContext context) {
@@ -41,16 +38,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const Divider(),
 
             SwitchListTile.adaptive(
-              onChanged: (value) => setState(() => isDarkmode = value),
+              onChanged: (value) => setState(() => Preferences.isDarkmode = value),
               title: const Text('Darkmode'),
-              value: isDarkmode
+              value: Preferences.isDarkmode
             ),
 
             const Divider(),
 
             RadioListTile<int>(
-              groupValue: gender,
-              onChanged: (value) => setState(() => gender = value ?? 1),
+              groupValue: Preferences.gender,
+              onChanged: (value) => setState(() => Preferences.gender = value ?? 1),
               title: const Text('Masculino'),
               value: 1
             ),
@@ -58,8 +55,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const Divider(),
 
             RadioListTile<int>(
-              groupValue: gender,
-              onChanged: (value) => setState(() => gender = value ?? 2),
+              groupValue: Preferences.gender,
+              onChanged: (value) => setState(() => Preferences.gender = value ?? 2),
               title: const Text('Femenino'),
               value: 2
             ),
@@ -73,8 +70,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   helperText: 'Nombre del usuario',
                   labelText: 'Nombre'
                 ),
-                initialValue: name,
-                onChanged: (value) => setState(() => name = value),
+                initialValue: Preferences.name,
+                onChanged: (value) => setState(() => Preferences.name = value),
               ),
             )
           ],
