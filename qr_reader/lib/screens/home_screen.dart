@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.delete_forever),
-            onPressed: () {},
+            onPressed: () => Provider.of<ScanListProvider>(context, listen: false).borrarTodos()
           )
         ],
         elevation: 0,
