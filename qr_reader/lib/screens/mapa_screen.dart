@@ -39,6 +39,20 @@ class _MapaScreenState extends State<MapaScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.location_disabled),
+            onPressed: () async {
+              final GoogleMapController controller = await _controller.future;
+              controller.animateCamera(CameraUpdate.newCameraPosition(
+                CameraPosition(
+                  target: scan.getLatLng(),
+                  zoom: 17
+                )
+              ));
+            }
+          )
+        ],
         title: const Text('Mapa')
       ),
       body: GoogleMap(
@@ -49,6 +63,11 @@ class _MapaScreenState extends State<MapaScreen> {
           _controller.complete(controller);
         }
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.layers),
+        onPressed: () {}
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
     );
   }
 
