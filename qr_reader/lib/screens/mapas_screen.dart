@@ -6,8 +6,15 @@ class MapasScreen extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('MapasScreen')
+    return ListView.builder(
+      itemBuilder: (_, i) => ListTile(
+        leading: Icon(Icons.map, color: Theme.of(context).primaryColor),
+        onTap: () {},
+        subtitle: const Text('ID: 1'),
+        title: const Text('valor'),
+        trailing: const Icon(Icons.keyboard_arrow_right, color: Colors.grey)
+      ),
+      itemCount: 10
     );
   }
 }
