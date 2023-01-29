@@ -3,6 +3,7 @@ import 'dart:convert';
 class ProductModel {
   ProductModel({
     required this.available,
+    this.id,
     required this.name,
     this.picture,
     required this.price
@@ -31,4 +32,12 @@ class ProductModel {
     'picture': picture,
     'price':  price
   };
+
+  ProductModel copy() => ProductModel(
+    available: available,
+    id: id,
+    name: name,
+    picture: picture,
+    price: price
+  );
 }
