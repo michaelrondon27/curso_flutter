@@ -18,6 +18,9 @@ class MyApp extends StatelessWidget {
         '/home': (_) => const HomeScreen(),
         '/mapa': (_) => const MapaScreen()
       },
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple
+      ),
       title: 'QR Reader'
     );
   }
