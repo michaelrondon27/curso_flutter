@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/home': (_) => const HomeScreen(),
         '/scroll_design': (_) => const ScrollDesignScreen(),
       },
+      theme: ThemeData.dark(),
       title: 'Material App'
     );
   }
