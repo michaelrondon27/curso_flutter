@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'package:productos_app/providers/login_form_provider.dart';
 import 'package:productos_app/ui/input_decorations.dart';
 import 'package:productos_app/widgets/widgets.dart';
 
@@ -25,7 +27,10 @@ class LoginScreen extends StatelessWidget {
 
                     const SizedBox(height: 30),
 
-                    const _LoginForm()
+                    ChangeNotifierProvider(
+                      create: (_) => LoginFormProvider(),
+                      child: const _LoginForm()
+                    )
                   ]
                 )
               ),
@@ -54,8 +59,12 @@ class _LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final loginForm = Provider.of<LoginFormProvider>(context);
+
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
+      key: loginForm.formKey,
       child: Column(
         children: [
           TextFormField(
@@ -66,10 +75,11 @@ class _LoginForm extends StatelessWidget {
               prefixIcon: Icons.alternate_email_rounded
             ),
             keyboardType: TextInputType.emailAddress,
+            onChanged: (value) => loginForm.email = value,
             validator: (value) {
               String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
  
-              RegExp regExp  = new RegExp(pattern);
+              RegExp regExp  = RegExp(pattern);
 
               return regExp.hasMatch(value ?? '') ? null : 'El valor ingresado no luce como un correo';
             }
@@ -85,6 +95,7 @@ class _LoginForm extends StatelessWidget {
               prefixIcon: Icons.lock_outline
             ),
             obscureText: true,
+            onChanged: (value) => loginForm.password = value,
             validator: (value) => (value != null && value.length >= 6) ? null : 'La contraseña debe de ser de 6 caracteres'
           ),
 
@@ -93,7 +104,11 @@ class _LoginForm extends StatelessWidget {
           MaterialButton(
             color: Colors.deepPurple,
             disabledColor: Colors.grey,
-            onPressed: () {},
+            onPressed: () {
+              if (!loginForm.isValidForm()) return;
+
+              Navigator.pushReplacementNamed(context, '/home');
+            },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
