@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:qr_reader/providers/scan_list_provider.dart';
 import 'package:qr_reader/providers/ui_provider.dart';
 import 'package:qr_reader/screens/direcciones_screen.dart';
 import 'package:qr_reader/screens/mapas_screen.dart';
@@ -24,7 +25,7 @@ class HomeScreen extends StatelessWidget {
         elevation: 0,
         title: const Text('Historial')
       ),
-      body: _HomeScreenBody(),
+      body: const _HomeScreenBody(),
       bottomNavigationBar: const CustomNavigatorBar(),
       floatingActionButton: const ScanButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -44,11 +45,15 @@ class _HomeScreenBody extends StatelessWidget {
 
     final currentIndex = uiProvider.selectedMenuOpt;
 
+    final scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
+
     switch (currentIndex) {
       case 0:
+        scanListProvider.cargarScansPorTipo('geo');
         return const MapasScreen();
 
       case 1:
+        scanListProvider.cargarScansPorTipo('http');
         return const DireccionesScreen();
 
       default:

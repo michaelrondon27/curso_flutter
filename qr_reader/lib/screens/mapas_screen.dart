@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:qr_reader/providers/scan_list_provider.dart';
 
 class MapasScreen extends StatelessWidget {
    
@@ -6,15 +9,18 @@ class MapasScreen extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    
+    final scans = Provider.of<ScanListProvider>(context).scans;
+
     return ListView.builder(
       itemBuilder: (_, i) => ListTile(
         leading: Icon(Icons.map, color: Theme.of(context).primaryColor),
         onTap: () {},
-        subtitle: const Text('ID: 1'),
-        title: const Text('valor'),
+        subtitle: Text(scans[i].id.toString()),
+        title: Text(scans[i].valor),
         trailing: const Icon(Icons.keyboard_arrow_right, color: Colors.grey)
       ),
-      itemCount: 10
+      itemCount: scans.length
     );
   }
 }
