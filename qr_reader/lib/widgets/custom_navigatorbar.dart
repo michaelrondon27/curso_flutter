@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:qr_reader/providers/ui_provider.dart';
 
 class CustomNavigatorBar extends StatelessWidget {
    
@@ -7,7 +10,9 @@ class CustomNavigatorBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final currentIndex = 0;
+    final uiProvider = Provider.of<UIProvider>(context);
+
+    final currentIndex = uiProvider.selectedMenuOpt;
 
     return BottomNavigationBar(
       currentIndex: currentIndex,
@@ -22,7 +27,8 @@ class CustomNavigatorBar extends StatelessWidget {
           icon: Icon(Icons.compass_calibration),
           label: 'Direcciones'
         )
-      ]
+      ],
+      onTap: (value) => uiProvider.selectedMenuOpt = value
     );
   }
 }
