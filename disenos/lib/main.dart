@@ -1,32 +1,21 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:disenos/screens/basic_design.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      home: _TempHomeScreen()
+      initialRoute: '/basic_design',
+      routes: {
+        '/basic_design': (_) => const BasicDesignScreen()
+      },
+      title: 'Material App'
     );
   }
 }
 
-class _TempHomeScreen extends StatelessWidget {
-
-  const _TempHomeScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Text('Hello World'),
-        Text('Hello World')
-      ]
-    );
-  }
-
-}
