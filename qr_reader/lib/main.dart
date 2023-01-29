@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'package:qr_reader/providers/ui_provider.dart';
 import 'package:qr_reader/screens/home_screen.dart';
 import 'package:qr_reader/screens/mapa_screen.dart';
 
@@ -11,17 +13,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/home',
-      routes: {
-        '/home': (_) => const HomeScreen(),
-        '/mapa': (_) => const MapaScreen()
-      },
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UIProvider())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/home',
+        routes: {
+          '/home': (_) => const HomeScreen(),
+          '/mapa': (_) => const MapaScreen()
+        },
+        theme: ThemeData(
+          primarySwatch: Colors.deepPurple
+        ),
+        title: 'QR Reader'
       ),
-      title: 'QR Reader'
     );
   }
 }

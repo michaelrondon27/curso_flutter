@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:qr_reader/providers/ui_provider.dart';
 import 'package:qr_reader/screens/direcciones_screen.dart';
 import 'package:qr_reader/screens/mapas_screen.dart';
-
 import 'package:qr_reader/widgets/custom_navigatorbar.dart';
 import 'package:qr_reader/widgets/scan_button.dart';
 
@@ -37,7 +39,10 @@ class _HomeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentIndex = 0;
+
+    final uiProvider = Provider.of<UIProvider>(context);
+
+    final currentIndex = uiProvider.selectedMenuOpt;
 
     switch (currentIndex) {
       case 0:
