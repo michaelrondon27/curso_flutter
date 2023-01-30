@@ -74,7 +74,7 @@ class _CardTopBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: <Widget> [
-          Text('${index + 1}. ', style: TextStyle(color: myTheme.colorScheme.secondary)),
+          Text('${index + 1}. ', style: TextStyle(color: myTheme.colorScheme.primary)),
           Text('${news.source.name}. ')
         ]
       )
@@ -156,26 +156,24 @@ class _CardButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: <Widget> [
-          RawMaterialButton(
-            fillColor: myTheme.colorScheme.secondary,
-            onPressed: () {},
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: const Icon(Icons.star_border)
-          ),
+    return Row(
+      children: <Widget> [
+        RawMaterialButton(
+          fillColor: myTheme.colorScheme.primary,
+          onPressed: () {},
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          child: const Icon(Icons.star_border)
+        ),
 
-          const SizedBox(width: 10),
+        const SizedBox(width: 10),
 
-          RawMaterialButton(
-            fillColor: Colors.blue,
-            onPressed: () {},
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: const Icon(Icons.more)
-          )
-        ]
-      )
+        RawMaterialButton(
+          fillColor: Colors.blue,
+          onPressed: () {},
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          child: const Icon(Icons.more)
+        )
+      ]
     );
   }
 
