@@ -34,7 +34,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (_) => const HomeScreen(),
         '/login': (_) => const LoginScreen(),
-        '/product': (_) => const ProductScreen()
+        '/product': (_) => const ProductScreen(),
+        '/register': (_) => const RegisterScreen()
       },
       theme: ThemeData.light().copyWith(
         appBarTheme: const AppBarTheme(
