@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:newsapp/src/models/category_model.dart';
 import 'package:newsapp/src/models/news_models.dart';
 
 class NewsService extends ChangeNotifier {
@@ -10,6 +12,15 @@ class NewsService extends ChangeNotifier {
   final _country = 've';
 
   List<Article> headlines = [];
+  List<CategoryModel> categories = [
+    CategoryModel(FontAwesomeIcons.building, 'business'),
+    CategoryModel(FontAwesomeIcons.tv, 'entertainment'),
+    CategoryModel(FontAwesomeIcons.addressCard, 'general'),
+    CategoryModel(FontAwesomeIcons.headSideVirus, 'health'),
+    CategoryModel(FontAwesomeIcons.vials, 'science'),
+    CategoryModel(FontAwesomeIcons.volleyball, 'sports'),
+    CategoryModel(FontAwesomeIcons.memory, 'technology')
+  ];
 
   NewsService() {
     getTopHeadlines(); 
