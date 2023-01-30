@@ -123,9 +123,11 @@ class _LoginForm extends StatelessWidget {
 
               final String? errorMessage = await authService.createUser(loginForm.email, loginForm.password);
 
-              loginForm.isLoading = false;
-              
-              (errorMessage == null) ? Navigator.pushReplacementNamed(context, '/home') : null;
+              if (errorMessage == null) {
+                Navigator.pushReplacementNamed(context, '/home');
+              } else {
+                loginForm.isLoading = false;
+              }
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             child: Container(
