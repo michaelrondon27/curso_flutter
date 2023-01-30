@@ -36,7 +36,7 @@ class ProductCard extends StatelessWidget {
               child: _PriceTag(price: product.price)
             ),
             
-            if (product.available)
+            if (!product.available)
               const Positioned(
                 left: 0,
                 top: 0,
