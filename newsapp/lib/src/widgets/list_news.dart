@@ -42,7 +42,14 @@ class _News extends StatelessWidget {
 
         _CardTitle(news: news),
 
-        _CardImage(news: news)
+        _CardImage(news: news),
+
+        _CardBody(news: news),
+
+        const _CardButtons(),
+
+        const SizedBox(height: 10),
+        const Divider()
       ]
     );
   }
@@ -107,7 +114,68 @@ class _CardImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(topLeft: Radius.circular(50), topRight: Radius.circular(50)),
+        child: Container(
+          child: (news.urlToImage != null)
+            ? FadeInImage(
+                image: NetworkImage(news.urlToImage!),
+                placeholder: const AssetImage('assets/giphy.gif')
+              )
+            : const Image(image: AssetImage('assets/no-image.png'))
+        ),
+      ),
+    );
+  }
 
+}
+
+class _CardBody extends StatelessWidget {
+
+  final Article news;
+  
+  const _CardBody({
+    Key? key,
+    required this.news
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Text((news.description != null) ? news.description! : '')
+    );
+  }
+
+}
+
+class _CardButtons extends StatelessWidget {
+  
+  const _CardButtons({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        children: <Widget> [
+          RawMaterialButton(
+            fillColor: myTheme.colorScheme.secondary,
+            onPressed: () {},
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: const Icon(Icons.star_border)
+          ),
+
+          const SizedBox(width: 10),
+
+          RawMaterialButton(
+            fillColor: Colors.blue,
+            onPressed: () {},
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: const Icon(Icons.more)
+          )
+        ]
+      )
     );
   }
 
