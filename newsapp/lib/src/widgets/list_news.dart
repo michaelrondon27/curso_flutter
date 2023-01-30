@@ -74,7 +74,7 @@ class _CardTopBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: <Widget> [
-          Text('${index + 1}. ', style: TextStyle(color: myTheme.colorScheme.primary)),
+          Text('${index + 1}. ', style: TextStyle(color: myTheme.primaryColor)),
           Text('${news.source.name}. ')
         ]
       )
@@ -159,7 +159,7 @@ class _CardButtons extends StatelessWidget {
     return Row(
       children: <Widget> [
         RawMaterialButton(
-          fillColor: myTheme.colorScheme.primary,
+          fillColor: myTheme.primaryColor,
           onPressed: () {},
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           child: const Icon(Icons.star_border)
