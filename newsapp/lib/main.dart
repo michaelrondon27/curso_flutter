@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/src/services/news_service.dart';
+import 'package:provider/provider.dart';
 
 import 'package:newsapp/src/screens/tabs_screen.dart';
 import 'package:newsapp/src/theme/theme.dart';
@@ -11,11 +13,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const TabsScreen(),
-      theme: myTheme,
-      title: 'Material App'
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => NewsService())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const TabsScreen(),
+        theme: myTheme,
+        title: 'Material App'
+      ),
     );
   }
 }

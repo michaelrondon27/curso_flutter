@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:newsapp/src/services/news_service.dart';
+
 class TabsScreen extends StatelessWidget {
    
   const TabsScreen({Key? key}) : super(key: key);
@@ -52,6 +54,7 @@ class _Pages extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final navigationModel = Provider.of<_NavigationModel>(context);
+    final newsService = Provider.of<NewsService>(context);
 
     return PageView(
       controller: navigationModel.pageController,
