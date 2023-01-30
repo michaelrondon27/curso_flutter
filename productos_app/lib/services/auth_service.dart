@@ -26,7 +26,7 @@ class AuthService extends ChangeNotifier {
 
     if (decodedResp.containsKey('idToken')) {
       await storage.write(key: 'token', value: decodedResp['idToken']);
-      return decodedResp['idToken'];
+      return null;
     } else {
       return decodedResp['error']['message'];
     }
@@ -47,7 +47,7 @@ class AuthService extends ChangeNotifier {
 
     if (decodedResp.containsKey('idToken')) {
       await storage.write(key: 'token', value: decodedResp['idToken']);
-      return decodedResp['idToken'];
+      return null;
     } else {
       return decodedResp['error']['message'];
     }
