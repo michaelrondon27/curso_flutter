@@ -24,14 +24,16 @@ class NewsService extends ChangeNotifier {
     CategoryModel(FontAwesomeIcons.memory, 'technology')
   ];
 
-  Map<String, List<Article>> categoryArtciles = {}; 
+  Map<String, List<Article>> categoryArticles = {}; 
 
   NewsService() {
     getTopHeadlines();
 
     categories.forEach((category) {
-      categoryArtciles[category.name] = [];
+      categoryArticles[category.name] = [];
     });
+
+    getArticlesByCategory(selectedCategory);
   }
 
   String get selectedCategory => _selectedCategory; 
@@ -40,6 +42,8 @@ class NewsService extends ChangeNotifier {
     getArticlesByCategory(value);
     notifyListeners();
   }
+
+  List<Article> get getArticlesCategorySelected => categoryArticles[selectedCategory]!; 
 
   getTopHeadlines() async {
     final url = Uri.https(_urlNews, '/v2/top-headlines', {
@@ -56,7 +60,7 @@ class NewsService extends ChangeNotifier {
   }
 
   getArticlesByCategory(String category) async {
-    if (categoryArtciles[category]!.isNotEmpty) return categoryArtciles[category];
+    if (categoryArticles[category]!.isNotEmpty) return categoryArticles[category];
 
     final url = Uri.https(_urlNews, '/v2/top-headlines', {
       'apiKey': _apikey,
@@ -68,7 +72,7 @@ class NewsService extends ChangeNotifier {
 
     final newsResponse = newsResponseFromJson(resp.body);
 
-    categoryArtciles[category]!.addAll(newsResponse.articles);
+    categoryArticles[category]!.addAll(newsResponse.articles);
     notifyListeners();
   }
 
